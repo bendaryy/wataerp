@@ -113,7 +113,7 @@ class UserController extends Controller
                 $user->userDefaultBankAccount($user->id);
 
                 Utility::chartOfAccountTypeData($user->id);
-                Utility::chartOfAccountData($user);
+                // Utility::chartOfAccountData($user);
                 // default chart of account for new company
                 Utility::chartOfAccountData1($user->id);
 
