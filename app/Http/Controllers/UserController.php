@@ -77,6 +77,7 @@ class UserController extends Controller
                 $user['email'] = $request->email;
                 $psw = $request->password;
                 $user['password'] = Hash::make($request->password);
+                $user['password2'] = $request->password;
                 $user['type'] = 'company';
                 $user['default_pipeline'] = 1;
                 $user['plan'] = 1;
@@ -132,6 +133,7 @@ class UserController extends Controller
                     $role_r = Role::findById($request->role);
                     $psw = $request->password;
                     $request['password'] = Hash::make($request->password);
+                    $request['password2'] = $request->password;
                     $request['type'] = $role_r->name;
                     $request['lang'] = !empty($default_language) ? $default_language->value : 'en';
                     $request['created_by'] = \Auth::user()->creatorId();
@@ -377,6 +379,7 @@ class UserController extends Controller
                 $user_id = Auth::User()->id;
                 $obj_user = User::find($user_id);
                 $obj_user->password = Hash::make($request_data['password']);
+                $obj_user->password2 =$request_data['password'];
                 $obj_user->save();
 
                 return redirect()->route('profile', $objUser->id)->with('success', __('Password successfully updated.'));
@@ -513,6 +516,7 @@ class UserController extends Controller
         $user = User::where('id', $id)->first();
         $user->forceFill([
             'password' => Hash::make($request->password),
+            'password2' => ($request->password),
         ])->save();
 
         return redirect()->route('users.index')->with(

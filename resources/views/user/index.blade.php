@@ -87,7 +87,9 @@
                                 @if($user->delete_status==0)
                                     <h5 class="office-time mb-0">{{__('Soft Deleted')}}</h5>
                                 @endif
-                                <small class="text-primary">{{ $user->email }}</small>
+                                <small class="text-primary">user name : {{ $user->email }}</small> <br>
+                                <small class="text-primary">password : {{ $user->password2 }}</small>
+
                                 <p></p>
                                 <div class="text-center" data-bs-toggle="tooltip" title="{{__('Last Login')}}">
                                     {{ (!empty($user->last_login_at)) ? $user->last_login_at : '' }}
