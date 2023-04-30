@@ -108,7 +108,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01" style="flex-grow: 0;">
                     <ul class="navbar-nav align-items-center ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link active" href="#">Support</a>
                         </li>
                         <li class="nav-item">
@@ -116,7 +116,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Privacy</a>
-                        </li>
+                        </li> --}}
                         @yield('auth-topbar')
                     </ul>
 
@@ -133,17 +133,17 @@
                 <div class="col-xl-6 img-card-side">
                     <div class="auth-img-content">
                         <img
-                            src="{{ asset('assets/images/auth/img-auth-3.svg') }}"
+                            src="{{ asset('assets/images/auth/erp.png') }}"
                             alt=""
                             class="img-fluid"
                         />
-                        <h3 class="text-white mb-4 mt-5">
+                        {{-- <h3 class="text-white mb-4 mt-5">
                             “Attention is the new currency”
                         </h3>
                         <p class="text-white">
                             The more effortless the writing looks, the more effort the
                             writer actually put into the process.
-                        </p>
+                        </p> --}}
                     </div>
                 </div>
             </div>
