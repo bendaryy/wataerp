@@ -120,13 +120,19 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('AdminApprove',$journalEntry->id) }}" method="POST">
-                @method('post')
-                @csrf
+            @if ($journalEntry->Approve == 1)
                 <div style="text-align: center">
-                    <button type="submit" class="btn btn-success">{{ __('Approve') }}</button>
+                    <button class="btn btn-success">{{ __('Approved') }}</button>
                 </div>
-            </form>
+            @else
+                <form action="{{ route('AdminApprove', $journalEntry->id) }}" method="POST">
+                    @method('post')
+                    @csrf
+                    <div style="text-align: center">
+                        <button type="submit" class="btn btn-primary">{{ __('Approve') }}</button>
+                    </div>
+                </form>
+            @endif
         </div>
 
     </div>

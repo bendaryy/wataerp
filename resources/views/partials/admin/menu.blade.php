@@ -758,8 +758,11 @@
                                 <a href="#!" class="dash-link {{ (Request::segment(1) == 'journal' || Request::segment(1) == 'waitingjournal') ? 'active dash-trigger' : ''}}"><span class="dash-micon"><i class="ti ti-layers-difference"></i></span><span class="dash-mtext">{{__('Journals')}}</span><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
                                 <ul class="dash-submenu">
 
-                                        <li class="dash-item {{ (Request::route()->getName() == 'waitingjournal' || Request::route()->getName() == 'journal' || Request::route()->getName() == 'leads.show') ? ' active' : '' }}">
-                                            <a class="dash-link" href="{{ route('waitingjournal') }}">{{__('waiting journal')}}</a>
+                                        <li class="dash-item {{ (Request::route()->getName() == 'waitingjournal' || Request::route()->getName() == 'journal') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('waitingjournal') }}">{{__('waiting journals')}}</a>
+                                        </li>
+                                        <li class="dash-item {{ (Request::route()->getName() == 'approvedjournal' || Request::route()->getName() == 'journal') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('approvedjournal') }}">{{__('Approved journals')}}</a>
                                         </li>
 
 

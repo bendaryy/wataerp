@@ -635,6 +635,7 @@ Route::group(['middleware' => ['verified']], function () {
 
         Route::resource('journal-entry', JournalEntryController::class);
         Route::get('journal/waiting', [JournalEntryController::class,'waiting'])->name('waitingjournal');
+        Route::get('journal/approved', [JournalEntryController::class,'ApprovedFromAdmin'])->name('approvedjournal');
         Route::get('journal/admin/{id}', [JournalEntryController::class,'showAdmin'])->name('showAdminJournal');
         Route::post('journal/approve/{id}', [JournalEntryController::class,'adminApprove'])->name('AdminApprove');
 

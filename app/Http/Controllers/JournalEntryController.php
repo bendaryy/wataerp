@@ -33,6 +33,17 @@ class JournalEntryController extends Controller
         }
     }
 
+    public function ApprovedFromAdmin()
+    {
+        if (\Auth::user()->type == 'super admin') {
+            $journalEntries = JournalEntry::where('Approve', 1)->get();
+
+            return view('adminjournal.Approved', compact('journalEntries'));
+        } else {
+            return redirect()->back()->with('error', __('Permission denied.'));
+        }
+    }
+
     public function create()
     {
         if (\Auth::user()->can('create journal entry')) {
@@ -98,7 +109,7 @@ class JournalEntryController extends Controller
                 $journalItem->save();
             }
 
-            return redirect()->route('journal-entry.index')->with('success', __('Journal entry successfully created and waiting for admin approve.'));
+            return redirect()->route('journal-entry.index')->with('success', __('Journal entry successfully created and waiting for admin approval.'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
@@ -210,7 +221,7 @@ class JournalEntryController extends Controller
                     $journalItem->save();
                 }
 
-                return redirect()->route('journal-entry.index')->with('success', __('Journal entry successfully updated.'));
+                return redirect()->route('journal-entry.index')->with('success', __('Journal entry successfully updated and waiting for admin approval.'));
             } else {
                 return redirect()->back()->with('error', __('Permission denied.'));
             }
@@ -225,7 +236,7 @@ class JournalEntryController extends Controller
             $journalEntry = JournalEntry::findOrFail($id);
             $journalEntry->Approve = 1;
             $journalEntry->save();
-            return redirect()->back()->with('success', __('Journal entry successfully approved.'));
+            return redirect()->route('approvedjournal')->with('success', __('Journal entry successfully approved.'));
         }
     }
 

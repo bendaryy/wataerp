@@ -2775,5 +2775,6 @@
   "Zoom API Secret" : "تغيير حجم السرية API ",
   "Zoom Meeting" : "تكبير / تصغير الاجتماع ",
   "Zoom Meeting successfully created." : "تم تكوين تغيير الحجم بنجاح. ",
-  "Zoom Settings" : "محددات تغيير الحجم"
+  "Zoom Settings" : "محددات تغيير الحجم",
+  "waiting journals":"قيود قيد الإنتظار"
 }
