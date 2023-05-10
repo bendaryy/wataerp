@@ -30,12 +30,15 @@
             {{ Form::select('stage_id', [''=>__('Select Stage')],null, array('class' => 'form-control select','required'=>'required')) }}
         </div>
         <div class="col-12 form-group">
-            {{ Form::label('sources', __('Sources'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-            {{ Form::select('sources[]', $sources,null, array('class' => 'form-control select2','id'=>'choices-multiple1','multiple'=>'','required'=>'required')) }}
+            {{ Form::label('sources', __('Sources'),['class'=>'form-label']) }}
+            {{-- <span class="text-danger">*</span> --}}
+            {{ Form::select('sources[]', $sources,null, array('class' => 'form-control')) }}
         </div>
         <div class="col-12 form-group">
-            {{ Form::label('products', __('Products'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-            {{ Form::select('products[]', $products,null, array('class' => 'form-control select2','id'=>'choices-multiple2','multiple'=>'','required'=>'required')) }}
+            {{ Form::label('products', __('Products'),['class'=>'form-label']) }}
+            {{-- <span class="text-danger">*</span> --}}
+             {{-- {{ Form::select('products[]', $products,null, array('class' => 'form-control select2','id'=>'choices-multiple2','multiple'=>'','required'=>'required')) }} --}}
+            {{ Form::select('products[]', $products,null, array('class' => 'form-control')) }}
         </div>
         <div class="col-12 form-group">
             {{ Form::label('notes', __('Notes'),['class'=>'form-label']) }}

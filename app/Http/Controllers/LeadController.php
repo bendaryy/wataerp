@@ -106,8 +106,11 @@ class LeadController extends Controller
         {
             $users = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'company')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
             $users->prepend(__('Select User'), '');
+            $sources = Source::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $sources->prepend(__('Select source'), '');
 
-            return view('leads.create', compact('users'));
+
+            return view('leads.create', compact('users','sources'));
         }
         else
         {
@@ -174,6 +177,7 @@ class LeadController extends Controller
                 $lead->user_id     = $request->user_id;
                 $lead->pipeline_id = $pipeline->id;
                 $lead->stage_id    = $stage->id;
+                $lead->sources     = $request->sources;
                 $lead->created_by  = $usr->creatorId();
                 $lead->date        = date('Y-m-d');
                 $lead->save();
@@ -332,7 +336,9 @@ class LeadController extends Controller
                 $pipelines = Pipeline::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
                 $pipelines->prepend(__('Select Pipeline'), '');
                 $sources        = Source::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+                $sources->prepend(__('Select Source'), '');
                 $products       = ProductService::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+                $products->prepend(__('Select product'), '');
                 $users          = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('type', '!=', 'company')->where('id', '!=', \Auth::user()->id)->get()->pluck('name', 'id');
                 $lead->sources  = explode(',', $lead->sources);
                 $lead->products = explode(',', $lead->products);
@@ -372,8 +378,8 @@ class LeadController extends Controller
                                        'pipeline_id' => 'required',
                                        'user_id' => 'required',
                                        'stage_id' => 'required',
-                                       'sources' => 'required',
-                                       'products' => 'required',
+                                    //    'sources' => 'required',
+                                    //    'products' => 'required',
                                    ]
                 );
 

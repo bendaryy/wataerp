@@ -634,6 +634,9 @@ Route::group(['middleware' => ['verified']], function () {
         Route::post('journal-entry/account/destroy', [JournalEntryController::class, 'accountDestroy'])->name('journal.account.destroy');
 
         Route::resource('journal-entry', JournalEntryController::class);
+        Route::get('journal/waiting', [JournalEntryController::class,'waiting'])->name('waitingjournal');
+        Route::get('journal/admin/{id}', [JournalEntryController::class,'showAdmin'])->name('showAdminJournal');
+        Route::post('journal/approve/{id}', [JournalEntryController::class,'adminApprove'])->name('AdminApprove');
 
     }
     );

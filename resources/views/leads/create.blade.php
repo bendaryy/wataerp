@@ -26,6 +26,10 @@
             {{ Form::label('phone', __('Phone'),['class'=>'form-label']) }}
             {{ Form::text('phone', null, array('class' => 'form-control','required'=>'required')) }}
         </div>
+        <div class="col-6 form-group">
+            {{ Form::label('sources', __('Sources'),['class'=>'form-label']) }}
+            {{ Form::select('sources', $sources,null, array('class' => 'form-control')) }}
+        </div>
     </div>
 </div>
 

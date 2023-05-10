@@ -752,6 +752,22 @@
 
                     <!--------------------- Start User Managaement System ----------------------------------->
 
+
+                     @if(\Auth::user()->type=='super admin')
+                            <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'journal' || Request::segment(1) == 'waitingjournal') ? 'active dash-trigger' : ''}}" >
+                                <a href="#!" class="dash-link {{ (Request::segment(1) == 'journal' || Request::segment(1) == 'waitingjournal') ? 'active dash-trigger' : ''}}"><span class="dash-micon"><i class="ti ti-layers-difference"></i></span><span class="dash-mtext">{{__('Journals')}}</span><span class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
+                                <ul class="dash-submenu">
+
+                                        <li class="dash-item {{ (Request::route()->getName() == 'waitingjournal' || Request::route()->getName() == 'journal' || Request::route()->getName() == 'leads.show') ? ' active' : '' }}">
+                                            <a class="dash-link" href="{{ route('waitingjournal') }}">{{__('waiting journal')}}</a>
+                                        </li>
+
+
+                                </ul>
+                            </li>
+                    @endif
+
+
                     @if(\Auth::user()->type!='super admin' && ( Gate::check('manage user') || Gate::check('manage role') || Gate::check('manage client')))
                         <li class="dash-item dash-hasmenu">
                             <a href="#!" class="dash-link {{ (Request::segment(1) == 'users' || Request::segment(1) == 'roles' || Request::segment(1) == 'clients')?' active dash-trigger':''}}"

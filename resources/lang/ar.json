@@ -1341,7 +1341,7 @@
   "Journal entry account successfully deleted." : "تم حذف حساب ادخال سجل الأحداث بنجاح. ",
   "Journal Entry Create" : "تكوين ادخال سجل الأحداث ",
   "Journal Entry Edit" : "تحرير ادخال السجل ",
-  "Journal entry successfully created." : "تم تكوين ادخال سجل الأحداث بنجاح. ",
+  "Journal entry successfully created and waiting for admin approve." : "تم تكوين ادخال سجل الأحداث بنجاح و فى إنتظار موافقة المسئول. ",
   "Journal entry successfully deleted." : "تم حذف ادخال سجل الأحداث بنجاح. ",
   "Journal entry successfully updated." : "تم تعديل ادخال سجل الأحداث بنجاح. ",
   "Journal ID" : "كود سجل البيانات ",
