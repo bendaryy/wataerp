@@ -21,7 +21,18 @@ class JournalEntryController extends Controller
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
+    //waiting for user
+    public function journalWaiting()
+    {
+        if (\Auth::user()->can('manage journal entry')) {
+            $journalEntries = JournalEntry::where('created_by', '=', \Auth::user()->creatorId())->where('Approve', 0)->get();
 
+            return view('journalEntry.index', compact('journalEntries'));
+        } else {
+            return redirect()->back()->with('error', __('Permission denied.'));
+        }
+    }
+    //waiting for admin
     public function waiting()
     {
         if (\Auth::user()->type == 'super admin') {
@@ -109,7 +120,7 @@ class JournalEntryController extends Controller
                 $journalItem->save();
             }
 
-            return redirect()->route('journal-entry.index')->with('success', __('Journal entry successfully created and waiting for admin approval.'));
+            return redirect()->route('userWaitingJournal')->with('success', __('Journal entry successfully created and waiting for admin approval.'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
@@ -221,7 +232,7 @@ class JournalEntryController extends Controller
                     $journalItem->save();
                 }
 
-                return redirect()->route('journal-entry.index')->with('success', __('Journal entry successfully updated and waiting for admin approval.'));
+                return redirect()->route('userWaitingJournal')->with('success', __('Journal entry successfully updated and waiting for admin approval.'));
             } else {
                 return redirect()->back()->with('error', __('Permission denied.'));
             }

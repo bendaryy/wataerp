@@ -2776,5 +2776,7 @@
   "Zoom Meeting" : "تكبير / تصغير الاجتماع ",
   "Zoom Meeting successfully created." : "تم تكوين تغيير الحجم بنجاح. ",
   "Zoom Settings" : "محددات تغيير الحجم",
-  "waiting journals":"قيود قيد الإنتظار"
+  "waiting journals":"قيود قيد الإنتظار",
+  "journal account approved":"قيود تم الموافقة عليها",
+  "journal account waiting":"قيود قيد الإنتظار من المسئول"
 }

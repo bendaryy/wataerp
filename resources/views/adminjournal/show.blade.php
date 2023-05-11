@@ -122,7 +122,7 @@
             </div>
             @if ($journalEntry->Approve == 1)
                 <div style="text-align: center">
-                    <button class="btn btn-success">{{ __('Approved') }}</button>
+                    <span class="alert alert-success">{{ __('Approved') }}</span>
                 </div>
             @else
                 <form action="{{ route('AdminApprove', $journalEntry->id) }}" method="POST">

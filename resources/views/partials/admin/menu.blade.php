@@ -589,7 +589,10 @@
                                                     <a class="dash-link" href="{{ route('chart-of-account.index') }}">{{__('Chart of Accounts')}}</a>
                                                 </li>
                                                 <li class="dash-item {{ (Request::route()->getName() == 'journal-entry.edit' || Request::route()->getName() == 'journal-entry.create' || Request::route()->getName() == 'journal-entry.index' || Request::route()->getName() == 'journal-entry.show') ? ' active' : '' }}">
-                                                    <a class="dash-link" href="{{ route('journal-entry.index') }}">{{__('Journal Account')}}</a>
+                                                    <a class="dash-link" href="{{ route('journal-entry.index') }}">{{__('journal account approved')}}</a>
+                                                </li>
+                                                <li class="dash-item {{ (Request::route()->getName() == 'journal-entry.edit'|| Request::route()->getName() == 'userWaitingJournal' || Request::route()->getName() == 'journal-entry.create'|| Request::route()->getName() == 'journal-entry.show') ? ' active' : '' }}">
+                                                    <a class="dash-link" href="{{ route('userWaitingJournal') }}">{{__('journal account waiting')}}</a>
                                                 </li>
                                                 <li class="dash-item {{ (Request::route()->getName() == 'report.ledger' ) ? ' active' : '' }}">
                                                     <a class="dash-link" href="{{route('report.ledger')}}">{{__('Ledger Summary')}}</a>
