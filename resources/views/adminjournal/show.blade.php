@@ -120,32 +120,36 @@
                     </div>
                 </div>
             </div>
-            @if ($journalEntry->Approve == 1)
-                <div style="text-align: center">
-                    <span class="alert alert-success">{{ __('Approved') }}</span>
-                </div>
-            @else
-                <form action="{{ route('AdminApprove', $journalEntry->id) }}" method="POST">
-                    @method('post')
-                    @csrf
-                    <div style="text-align: center">
-                        <button type="submit" class="btn btn-primary">{{ __('Approve') }}</button>
+            <div style="text-align: center">
+
+
+                @if ($journalEntry->Approve == 1)
+                    <div style="text-align: center;display:inline-block">
+                        <span class="alert alert-success">{{ __('Approved') }}</span>
                     </div>
-                </form>
-            @endif
-            @if ($journalEntry->red_flag == 1)
-                <div style="text-align: center">
-                    <span class="alert alert-danger">{{ __('red flagged') }}</span>
-                </div>
-            @else
-                <form action="{{ route('makeRedFlag', $journalEntry->id) }}" method="POST">
-                    @method('post')
-                    @csrf
-                    <div style="text-align: center">
-                        <button type="submit" class="btn btn-primary">{{ __('Red Flag') }}</button>
+                @else
+                    <form action="{{ route('AdminApprove', $journalEntry->id) }}" method="POST">
+                        @method('post')
+                        @csrf
+                        <div style="text-align: center;display:inline-block">
+                            <button type="submit" class="btn btn-primary">{{ __('Approve') }}</button>
+                        </div>
+                    </form>
+                @endif
+                @if ($journalEntry->red_flag == 1)
+                    <div style="text-align: center;display:inline-block">
+                        <span class="alert alert-danger">{{ __('Red Flagged') }}</span>
                     </div>
-                </form>
-            @endif
+                @else
+                    <form action="{{ route('makeRedFlag', $journalEntry->id) }}" method="POST">
+                        @method('post')
+                        @csrf
+                        <div style="text-align: center;display:inline-block">
+                            <button type="submit" class="btn btn-primary">{{ __('Red Flag') }}</button>
+                        </div>
+                    </form>
+                @endif
+            </div>
         </div>
 
     </div>

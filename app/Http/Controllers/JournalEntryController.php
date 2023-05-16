@@ -321,7 +321,7 @@ class JournalEntryController extends Controller
 
     // make red falg from admin
 
-    public function makeRedFlag(){
+    public function makeRedFlag($id){
         if (\Auth::user()->type == 'super admin') {
              $journalEntry = JournalEntry::findOrFail($id);
             $journalEntry->red_flag = 1;
