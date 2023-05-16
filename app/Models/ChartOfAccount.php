@@ -28,7 +28,7 @@ class ChartOfAccount extends Model
 
     public function balance()
     {
-        $journalItem         = JournalItem::select(\DB::raw('sum(credit) as totalCredit'), \DB::raw('sum(debit) as totalDebit'), \DB::raw('sum(credit) - sum(debit) as netAmount'))->where('account', $this->id);
+        $journalItem         = JournalItem::select(\DB::raw('sum(credit) as totalCredit'), \DB::raw('sum(debit) as totalDebit'), \DB::raw('sum(credit) - sum(debit) as netAmount'))->where('account', $this->id)->join('journal_entries', 'journal_items.journal', '=', 'journal_entries.id')->where('journal_entries.Approve', '=', 1);
         $journalItem         = $journalItem->first();
         $data['totalCredit'] = $journalItem->totalCredit;
         $data['totalDebit']  = $journalItem->totalDebit;
