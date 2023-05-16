@@ -639,7 +639,9 @@ Route::group(['middleware' => ['verified']], function () {
         Route::get('journal/approved', [JournalEntryController::class,'ApprovedFromAdmin'])->name('approvedjournal');
         Route::get('journal/admin/{id}', [JournalEntryController::class,'showAdmin'])->name('showAdminJournal');
         Route::post('journal/approve/{id}', [JournalEntryController::class,'adminApprove'])->name('AdminApprove');
+        Route::post('journal/waiting/{id}', [JournalEntryController::class,'adminWaiting'])->name('adminWaiting');
         Route::post('journal/redflag/{id}', [JournalEntryController::class,'makeRedFlag'])->name('makeRedFlag');
+        Route::post('journal/removeredflag/{id}', [JournalEntryController::class,'RemoveRedFlag'])->name('RemoveRedFlag');
 
     }
     );

@@ -318,13 +318,36 @@ class JournalEntryController extends Controller
         }
     }
 
+    // waiting event for admin
+    public function adminWaiting($id)
+    {
+        if (\Auth::user()->type == 'super admin') {
+            $journalEntry = JournalEntry::findOrFail($id);
+            $journalEntry->Approve = 0;
+            $journalEntry->save();
+            return redirect()->route('waitingjournal')->with('success', __('Journal entry successfully added to waiting.'));
+        }
+    }
 
     // make red falg from admin
 
-    public function makeRedFlag($id){
+    public function makeRedFlag($id)
+    {
         if (\Auth::user()->type == 'super admin') {
-             $journalEntry = JournalEntry::findOrFail($id);
+            $journalEntry = JournalEntry::findOrFail($id);
             $journalEntry->red_flag = 1;
+            $journalEntry->save();
+            return redirect()->back()->with('success', __('Journal entry successfully red flag.'));
+
+        }
+    }
+    // remove red falg by admin
+
+    public function RemoveRedFlag($id)
+    {
+        if (\Auth::user()->type == 'super admin') {
+            $journalEntry = JournalEntry::findOrFail($id);
+            $journalEntry->red_flag = 0;
             $journalEntry->save();
             return redirect()->back()->with('success', __('Journal entry successfully red flag.'));
 

@@ -13,11 +13,31 @@
     {{-- create by {{ $user->name }} --}}
 @endsection
 
+
 @section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div style="margin: 20px 0">
+
+
+                        @if ($journalEntry->Approve == 1)
+                            <div style="display:inline-block">
+                                <span class="alert alert-success">{{ __('Approved') }}</span>
+                            </div>
+                        @else
+                            <div style="display:inline-block">
+                                <span type="submit" class="btn btn-primary">{{ __('Waiting') }}</span>
+                            </div>
+                        @endif
+                        @if ($journalEntry->red_flag == 1)
+                            <div style="display:inline-block">
+                                <span class="alert alert-danger">{{ __('Red Flagged') }}</span>
+                            </div>
+                        @else
+                        @endif
+                    </div>
                     <div class="invoice">
                         <div class="invoice-print">
                             <div class="row invoice-title mt-2">
@@ -124,28 +144,44 @@
 
 
                 @if ($journalEntry->Approve == 1)
-                    <div style="text-align: center;display:inline-block">
+                    {{-- <div style="text-align: center;display:inline-block">
                         <span class="alert alert-success">{{ __('Approved') }}</span>
-                    </div>
-                @else
-                    <form action="{{ route('AdminApprove', $journalEntry->id) }}" method="POST">
+                    </div> --}}
+                    <form style="display: inline-block" action="{{ route('adminWaiting', $journalEntry->id) }}" method="POST">
                         @method('post')
                         @csrf
                         <div style="text-align: center;display:inline-block">
-                            <button type="submit" class="btn btn-primary">{{ __('Approve') }}</button>
+                            <button type="submit" class="btn btn-warning">{{ __('Add To Waiting') }}</button>
+                        </div>
+                    </form>
+                    @else
+                    <form style="display: inline-block" action="{{ route('AdminApprove', $journalEntry->id) }}" method="POST">
+                        @method('post')
+                        @csrf
+                        <div style="text-align: center;display:inline-block">
+                            <button type="submit" class="btn btn-success">{{ __('Approve') }}</button>
                         </div>
                     </form>
                 @endif
-                @if ($journalEntry->red_flag == 1)
-                    <div style="text-align: center;display:inline-block">
+                @if ($journalEntry->red_flag == 0)
+                    {{-- <div style="text-align: center;display:inline-block">
                         <span class="alert alert-danger">{{ __('Red Flagged') }}</span>
-                    </div>
-                @else
-                    <form style="display: inline-block" action="{{ route('makeRedFlag', $journalEntry->id) }}" method="POST">
+                    </div> --}}
+                    <form style="display: inline-block" action="{{ route('makeRedFlag', $journalEntry->id) }}"
+                        method="POST">
                         @method('post')
                         @csrf
                         <div style="text-align: center;display:inline-block">
-                            <button type="submit" class="btn btn-primary">{{ __('Red Flag') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Add Red Flag') }}</button>
+                        </div>
+                    </form>
+                @else
+                    <form style="display: inline-block" action="{{ route('RemoveRedFlag', $journalEntry->id) }}"
+                        method="POST">
+                        @method('post')
+                        @csrf
+                        <div style="text-align: center;display:inline-block">
+                            <button type="submit" class="btn btn-success">{{ __('Remove Red Flag') }}</button>
                         </div>
                     </form>
                 @endif
