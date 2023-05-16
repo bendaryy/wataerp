@@ -141,7 +141,7 @@
                         <span class="alert alert-danger">{{ __('Red Flagged') }}</span>
                     </div>
                 @else
-                    <form action="{{ route('makeRedFlag', $journalEntry->id) }}" method="POST">
+                    <form style="display: inline-block" action="{{ route('makeRedFlag', $journalEntry->id) }}" method="POST">
                         @method('post')
                         @csrf
                         <div style="text-align: center;display:inline-block">
