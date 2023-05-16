@@ -133,6 +133,19 @@
                     </div>
                 </form>
             @endif
+            @if ($journalEntry->red_flag == 1)
+                <div style="text-align: center">
+                    <span class="alert alert-danger">{{ __('red flagged') }}</span>
+                </div>
+            @else
+                <form action="{{ route('makeRedFlag', $journalEntry->id) }}" method="POST">
+                    @method('post')
+                    @csrf
+                    <div style="text-align: center">
+                        <button type="submit" class="btn btn-primary">{{ __('Red Flag') }}</button>
+                    </div>
+                </form>
+            @endif
         </div>
 
     </div>

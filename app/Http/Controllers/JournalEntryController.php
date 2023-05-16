@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class JournalEntryController extends Controller
 {
-
+    // approved for user
     public function index()
     {
         if (\Auth::user()->can('manage journal entry')) {
@@ -43,7 +43,7 @@ class JournalEntryController extends Controller
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
-
+// approved from admin
     public function ApprovedFromAdmin()
     {
         if (\Auth::user()->type == 'super admin') {
@@ -54,7 +54,7 @@ class JournalEntryController extends Controller
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
-
+// create new jouranl
     public function create()
     {
         if (\Auth::user()->can('create journal entry')) {
@@ -68,7 +68,7 @@ class JournalEntryController extends Controller
             return response()->json(['error' => __('Permission denied.')], 401);
         }
     }
-
+// store new jouranl
     public function store(Request $request)
     {
 
@@ -125,7 +125,7 @@ class JournalEntryController extends Controller
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
-
+// show journal for user
     public function show(JournalEntry $journalEntry)
     {
         if (\Auth::user()->can('show journal entry')) {
@@ -141,6 +141,8 @@ class JournalEntryController extends Controller
             return redirect()->back()->with('error', __('Permission denied.'));
         }
     }
+
+    // show journal for admin
 
     // public function showAdmin(JournalEntry $journalEntry)
     public function showAdmin($id)
@@ -313,6 +315,19 @@ class JournalEntryController extends Controller
             $journalEntry->Approve = 1;
             $journalEntry->save();
             return redirect()->route('approvedjournal')->with('success', __('Journal entry successfully approved.'));
+        }
+    }
+
+
+    // make red falg from admin
+
+    public function makeRedFlag(){
+        if (\Auth::user()->type == 'super admin') {
+             $journalEntry = JournalEntry::findOrFail($id);
+            $journalEntry->red_flag = 1;
+            $journalEntry->save();
+            return redirect()->back()->with('success', __('Journal entry successfully red flag.'));
+
         }
     }
 
