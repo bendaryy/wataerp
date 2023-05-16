@@ -28,7 +28,7 @@
                             </div>
                         @else
                             <div style="display:inline-block">
-                                <span type="submit" class="btn btn-primary">{{ __('Waiting') }}</span>
+                                <span type="submit" class="alert alert-primary">{{ __('Waiting') }}</span>
                             </div>
                         @endif
                         @if ($journalEntry->red_flag == 1)
