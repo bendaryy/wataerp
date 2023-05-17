@@ -28,6 +28,7 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
+                                    <th> #</th>
                                     <th> {{ __('Journal ID') }}</th>
                                     <th> {{ __('Date') }}</th>
                                     <th> {{ __('Amount') }}</th>
@@ -42,6 +43,13 @@
                                     $user = \App\Models\User::find($journalEntry->created_by);
                                 @endphp
                                     <tr>
+                                        <td>
+                                            @if($journalEntry->red_flag == 1)
+                                            <i class="ti ti-flag" style="color: red;font-size: 25px"></i>
+                                            @else
+                                            <i class="ti ti-flag" style="color: green;font-size: 25px"></i>
+                                            @endif
+                                        </td>
                                         <td class="Id">
                                             <a href="{{ route('showAdminJournal', $journalEntry->id) }}"
                                                 class="btn btn-outline-primary">{{ $user->journalNumberFormat($journalEntry->journal_id) }}</a>

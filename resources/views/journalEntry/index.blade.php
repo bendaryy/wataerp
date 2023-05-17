@@ -3,7 +3,7 @@
     {{ __('Manage Journal Entry') }}
     @if (request()->routeIs('userWaitingJournal'))
         <span class="alert alert-warning">{{ __('waiting') }}</span>
-        @else
+    @else
         <span class="alert alert-success">{{ __('Approved') }}</span>
     @endif
 @endsection
@@ -33,6 +33,7 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
+                                    <th> #</th>
                                     <th> {{ __('Journal ID') }}</th>
                                     <th> {{ __('Date') }}</th>
                                     <th> {{ __('Amount') }}</th>
@@ -43,6 +44,13 @@
                             <tbody>
                                 @foreach ($journalEntries as $journalEntry)
                                     <tr>
+                                        <td>
+                                            @if ($journalEntry->red_flag == 1)
+                                                <i class="ti ti-flag" style="color: red;font-size: 25px"></i>
+                                            @else
+                                                <i class="ti ti-flag" style="color: green;font-size: 25px"></i>
+                                            @endif
+                                        </td>
                                         <td class="Id">
                                             <a href="{{ route('journal-entry.show', $journalEntry->id) }}"
                                                 class="btn btn-outline-primary">{{ AUth::user()->journalNumberFormat($journalEntry->journal_id) }}</a>
@@ -51,7 +59,8 @@
                                         <td>
                                             {{ \Auth::user()->priceFormat($journalEntry->totalCredit()) }}
                                         </td>
-                                        <td>{{ !empty($journalEntry->description) ? $journalEntry->description : '-' }}</td>
+                                        <td>{{ !empty($journalEntry->description) ? $journalEntry->description : '-' }}
+                                        </td>
                                         <td>
                                             @can('edit journal entry')
                                                 <div class="action-btn bg-primary ms-2">

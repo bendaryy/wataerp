@@ -337,7 +337,7 @@ class JournalEntryController extends Controller
             $journalEntry = JournalEntry::findOrFail($id);
             $journalEntry->red_flag = 1;
             $journalEntry->save();
-            return redirect()->back()->with('success', __('Journal entry successfully red flag.'));
+            return redirect()->back()->with('success', __('red flag added.'));
 
         }
     }
@@ -349,7 +349,7 @@ class JournalEntryController extends Controller
             $journalEntry = JournalEntry::findOrFail($id);
             $journalEntry->red_flag = 0;
             $journalEntry->save();
-            return redirect()->back()->with('success', __('Journal entry successfully red flag.'));
+            return redirect()->back()->with('success', __('red flag removed.'));
 
         }
     }
